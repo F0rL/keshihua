@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>G2Plot</title>
+    <script src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.js"></script>
+  </head>
+  <body>
+    <div id="g2-chart"></div>
+    <script>
+      const data = [
+        { year: '1991', value: 3 },
+        { year: '1992', value: 4 },
+        { year: '1993', value: 3.5 },
+        { year: '1994', value: 5 },
+        { year: '1995', value: 4.9 },
+        { year: '1996', value: 6 },
+        { year: '1997', value: 7 },
+        { year: '1998', value: 9 },
+        { year: '1999', value: 13 }
+      ]
+
+      const chartDom = document.getElementById('g2-chart')
+      const linePlot = new G2Plot.Line(chartDom, {
+        title: {
+          visible: true,
+          text: '折线图'
+        },
+        description: {
+          visible: true,
+          text: '用平滑的曲线代替折线。'
+        },
+        data,
+        smooth: true,
+        point: {
+          visible: true,
+          size: 5,
+          // color: 'fff',
+          style: {
+            stroke: '#fe740c',
+            fill: '#fff',
+            lineWidth: 2,
+            fillOpacity: 0.6
+          }
+        },
+        label: {
+          visible: true
+        },
+        color: '#f2740c',
+        xField: 'year',
+        yField: 'value',
+        yAxis: {
+          formatter: v => {
+            return `${v}k`
+          }
+        },
+        xAxis: {
+          visible: true,
+          formatter: v => {
+            return `${v}年`
+          }
+        }
+      })
+      linePlot.render()
+    </script>
+  </body>
+</html>

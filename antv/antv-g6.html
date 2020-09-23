@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>antV-g6</title>
+    <script src="https://gw.alipayobjects.com/os/lib/antv/g6/3.7.3/dist/g6.min.js"></script>
+  </head>
+  <body>
+    <div id="mountNode"></div>
+    <script>
+      const data = {
+        // 点集
+        nodes: [
+          {
+            id: 'node1', // String，该节点存在则必须，节点的唯一标识
+            x: 100, // Number，可选，节点位置的 x 值
+            y: 200, // Number，可选，节点位置的 y 值
+            label: '起始点',
+            size: 60,
+            labelCfg: {
+              position: 'center',
+              style: {
+                fontSize: 12,
+                fill: '#fff'
+              }
+            },
+            style: {
+              fill: '#ff0000',
+              stroke: '#888',
+              lineWidth: 1
+            }
+          },
+          {
+            id: 'node2', // String，该节点存在则必须，节点的唯一标识
+            x: 300, // Number，可选，节点位置的 x 值
+            y: 200, // Number，可选，节点位置的 y 值
+            label: '目标点1',
+            size: 80
+          },
+          {
+            id: 'node3', // String，该节点存在则必须，节点的唯一标识
+            x: 500, // Number，可选，节点位置的 x 值
+            y: 200, // Number，可选，节点位置的 y 值
+            label: '目标点2',
+            size: 100
+          },
+          {
+            id: 'node4',
+            x: 300,
+            y: 300,
+            label: '目标点3',
+            size: 100
+          }
+        ],
+        // 边集
+        edges: [
+          {
+            source: 'node1', // String，必须，起始点 id
+            target: 'node2' // String，必须，目标点 id
+          },
+          {
+            source: 'node2', // String，必须，起始点 id
+            target: 'node3' // String，必须，目标点 id
+          },
+          {
+            source: 'node1',
+            target: 'node4'
+          }
+        ]
+      }
+      const graph = new G6.Graph({
+        container: 'mountNode', // String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身
+        width: 800, // Number，必须，图的宽度
+        height: 800 // Number，必须，图的高度
+      })
+      graph.data(data) // 读取 Step 2 中的数据源到图上
+      graph.render() // 渲染图
+    </script>
+  </body>
+</html>
