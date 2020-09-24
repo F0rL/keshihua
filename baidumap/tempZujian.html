@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hello, World</title>
+    <style type="text/css">
+      html {
+        height: 100%;
+      }
+      body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+      #container {
+        height: 100%;
+      }
+      /* 去除版权声明 */
+      .anchorBL,
+      .anchorBL.BMap_cpyCtrl {
+        display: none;
+      }
+      /* bottom会被上面的样式影响 */
+      .BMap_stdMpZoom {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container"></div>
+    <script
+      type="text/javascript"
+      src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=aL8BIGUl48oVbpCu8B4UQYFSQuHnwr19"
+    ></script>
+    <script type="text/javascript">
+      //文档可能与实际不符合
+      var map = new BMapGL.Map('container', {
+        minZoom: 8,
+        maxZoom: 15,
+        mapType: BMAP_NORMAL_MAP
+      })
+      // 创建地图实例
+      var point = new BMapGL.Point(116.404, 39.915)
+      // 创建点坐标
+      map.centerAndZoom(point, 15)
+      // 初始化地图，设置中心点坐标和地图级别
+      map.enableScrollWheelZoom(true)
+      //允许滚轮放大缩小
+      var heading = 0
+      map.setHeading(0)
+      map.setTilt(0)
+
+      var zoomCtrl = new BMapGL.ZoomControl({
+        // 放大缩小工具位置
+        anchor: BMAP_ANCHOR_BOTTOM_LEFT,
+        // 设定位移
+        offset: new BMapGL.Size(20, 20)
+      })
+      map.addControl(zoomCtrl)
+      // 获取缩放级别
+      map.addEventListener('zoomstart', function () {
+        console.log(map.getZoom())
+      })
+      map.addEventListener('zoomend', function () {
+        console.log(map.getZoom())
+      })
+      // 比例尺
+      var scaleCtrl = new BMapGL.ScaleControl({
+        anchor: BMAP_ANCHOR_TOP_LEFT,
+        offset: new BMapGL.Size(20, 20)
+      })
+      map.addControl(scaleCtrl)
+    </script>
+  </body>
+</html>
