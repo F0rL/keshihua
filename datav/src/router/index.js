@@ -9,6 +9,21 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/bmap',
+    name: 'BMap',
+    component: () => import('../views/BMap.vue')
+  },
+  {
+    path: '/liquidfill',
+    name: 'Liquidfill',
+    component: () => import('../views/Liquidfill.vue')
+  },
+  {
+    path: '/wordcloud',
+    name: 'WordCloud',
+    component: () => import('../views/WordCloud.vue')
   }
 ]
 
