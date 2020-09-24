@@ -12,9 +12,13 @@ import TopView from '../components/TopView'
 import SalesView from '../components/SalesView'
 import MapView from '../components/MapView'
 import BottomView from '../components/BottomView'
+import { getWordCloud } from '../api'
 
 export default {
   name: 'Home',
+  mounted() {
+    getWordCloud().then((res) => console.log(res))
+  },
   components: {
     TopView,
     SalesView,
