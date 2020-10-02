@@ -12,12 +12,39 @@ import TopView from '../components/TopView'
 import SalesView from '../components/SalesView'
 import MapView from '../components/MapView'
 import BottomView from '../components/BottomView'
-import { getWordCloud } from '../api'
+import { getWordCloud, getMapScatter, getSceenData } from '../api'
 
 export default {
   name: 'Home',
+  data() {
+    return {
+      reportData: null,
+      wordCloud: null,
+      mapData: null,
+    }
+  },
   mounted() {
-    getWordCloud().then((res) => console.log(res))
+    getSceenData().then((data) => (this.reportData = data))
+    getWordCloud().then((data) => (this.wordCloud = data))
+    getMapScatter().then((data) => (this.mapData = data))
+  },
+  methods: {
+    getReportData() {
+      return this.reportData
+    },
+    getWordCloud() {
+      return this.wordCloud
+    },
+    getMapData() {
+      return this.mapData
+    },
+  },
+  provide() {
+    return {
+      getReportData: this.getReportData,
+      getWordCloud: this.getWordCloud,
+      getMapData: this.getMapData,
+    }
   },
   components: {
     TopView,
